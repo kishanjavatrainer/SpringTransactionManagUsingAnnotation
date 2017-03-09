@@ -1,0 +1,43 @@
+db.url=jdbc:mysql://localhost:3306/springwithjdbc
+db.drivername=com.mysql.jdbc.Driver
+db.username=root
+db.password=root
+
+========================================================================================================================
+CREATE TABLE `icici_bank` (
+  `account_no` bigint(11) NOT NULL,
+  `account_balance` double DEFAULT NULL,
+  `account_type` varchar(45) DEFAULT NULL,
+  `account_holder_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`account_no`)
+);
+
+========================================================================================================================
+
+========================================================================================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+========================================================================================================================
+
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db.drivername}"></property>
+		<property name="url" value="${db.url}"></property>
+		<property name="username" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
+</bean>
+
+==========================================================================================
+String SQL ="SELECT * FROM icici_bank WHERE account_no = ?";
+String SQL="UPDATE icici_bank set account_balance=? WHERE account_no=?";
